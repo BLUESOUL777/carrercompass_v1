@@ -2,17 +2,21 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { ArrowLeft, DollarSign, TrendingUp, MapPin, Users, BookOpen, Star } from 'lucide-react';
-import { getCareerBySlug, getRelatedCareers } from '@/lib/career-data';
+import { ArrowLeft, DollarSign, TrendingUp, Users, BookOpen} from 'lucide-react';
+import { getCareerBySlug, getRelatedCareers, careers } from '@/lib/career-data';
 import CollegeFilter from '@/components/college-filter';
 
 interface CareerPageProps {
   params: {
     slug: string;
   };
+}
+
+export function generateStaticParams() {
+  return careers.map((career) => ({
+    slug: career.slug,
+  }));
 }
 
 export function generateMetadata({ params }: CareerPageProps) {
@@ -69,9 +73,7 @@ export default function CareerPage({ params }: CareerPageProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-3 gap-12">
-          {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Overview */}
             <section>
               <h2 className="text-2xl font-bold mb-4">Career Overview</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -79,7 +81,6 @@ export default function CareerPage({ params }: CareerPageProps) {
               </p>
             </section>
 
-            {/* Key Stats */}
             <section>
               <h2 className="text-2xl font-bold mb-6">Key Information</h2>
               <div className="grid md:grid-cols-2 gap-6">
@@ -109,7 +110,6 @@ export default function CareerPage({ params }: CareerPageProps) {
               </div>
             </section>
 
-            {/* Scope */}
             <section>
               <h2 className="text-2xl font-bold mb-4">Career Scope</h2>
               <p className="text-muted-foreground leading-relaxed">
@@ -117,7 +117,6 @@ export default function CareerPage({ params }: CareerPageProps) {
               </p>
             </section>
 
-            {/* Qualifications */}
             <section>
               <h2 className="text-2xl font-bold mb-4">Required Qualifications</h2>
               <div className="space-y-3">
@@ -129,8 +128,6 @@ export default function CareerPage({ params }: CareerPageProps) {
                 ))}
               </div>
             </section>
-
-            {/* Skills */}
             <section>
               <h2 className="text-2xl font-bold mb-4">Key Skills</h2>
               <div className="flex flex-wrap gap-3">
@@ -142,7 +139,6 @@ export default function CareerPage({ params }: CareerPageProps) {
               </div>
             </section>
 
-            {/* Work Environment */}
             <section>
               <h2 className="text-2xl font-bold mb-4">Work Environment</h2>
               <div className="flex items-start space-x-3">
@@ -154,12 +150,8 @@ export default function CareerPage({ params }: CareerPageProps) {
             </section>
           </div>
 
-          {/* Sidebar */}
           <div className="space-y-8">
-            {/* College Filter */}
             <CollegeFilter careerTitle={career.title} />
-
-            {/* Related Careers */}
             {relatedCareers.length > 0 && (
               <Card>
                 <CardHeader>
