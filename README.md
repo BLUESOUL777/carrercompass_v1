@@ -30,8 +30,8 @@ Career Compass is an interactive web application that helps students **discover 
 ---
 
 ## 📌 Future Enhancements
--📊 Track user progress & save results
--🌍 Add college/course recommendations based on career choice
--🤝 AI-powered guidance for more accurate suggestions
+- 📊 Track user progress & save results
+- 🌍 Add college/course recommendations based on career choice
+- 🤝 AI-powered guidance for more accurate suggestions
 
 ---
